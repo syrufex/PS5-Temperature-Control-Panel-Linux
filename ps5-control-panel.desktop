@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=PS5 Control Panel
+Comment=Fan target, fan patterns, boost, LED color and temperatures for Linux on PS5
+Exec=/usr/local/bin/ps5-control-panel
+Icon=/opt/ps5-control-panel/icon.svg
+Terminal=false
+Categories=System;Settings;HardwareSettings;
+Keywords=ps5;fan;led;temperature;

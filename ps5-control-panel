@@ -1,0 +1,17 @@
+#!/bin/sh
+# Launcher: asks for your password graphically (polkit) and runs the GUI as root.
+APP=/opt/ps5-control-panel/ps5_control_gui.py
+
+# Let root draw on your display (needed for X11/XWayland). Best-effort.
+command -v xhost >/dev/null 2>&1 && xhost +SI:localuser:root >/dev/null 2>&1
+
+if [ "$(id -u)" -eq 0 ]; then
+    exec python3 "$APP"
+fi
+
+exec pkexec env \
+    DISPLAY="$DISPLAY" \
+    XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}" \
+    WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+    XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
+    python3 "$APP"
